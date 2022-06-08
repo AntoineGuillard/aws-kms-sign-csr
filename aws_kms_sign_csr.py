@@ -2,16 +2,17 @@
 """
 python script to re-sign an existing CSR with an asymmetric keypair held in AWS KMS
 """
-import hashlib
-import base64
-import textwrap
 import argparse
+import base64
+import hashlib
+import textwrap
+
+import boto3
+import pyasn1_modules.pem
+import pyasn1_modules.rfc2314
+import pyasn1_modules.rfc2986
 from pyasn1.codec.der import decoder, encoder
 from pyasn1.type import univ
-import pyasn1_modules.pem
-import pyasn1_modules.rfc2986
-import pyasn1_modules.rfc2314
-import boto3
 
 START_MARKER = "-----BEGIN CERTIFICATE REQUEST-----"
 END_MARKER = "-----END CERTIFICATE REQUEST-----"
